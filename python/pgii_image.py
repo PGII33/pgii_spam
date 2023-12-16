@@ -9,6 +9,7 @@ class PgiiImage(Image.Image):
         self._size = size
         self._mode = mode
         self._path = path
+        
         if path is None :
             self.img = self.__create_image(mode, size)
         else:
@@ -35,13 +36,36 @@ class PgiiImage(Image.Image):
 
     def __create_image(self, mode:str, size:tuple)->Image:
         ''' Create the Image '''
-        return Image.new(mode, size)
+        temp = Image.new(mode, size)
+        temp.load()
+        self.size = temp.size
+        self.mode = temp.mode
+        self.im = temp.im
+        self.info = temp.info.copy()
+        return temp
 
     def __open_image(self, path:str)->Image:
         temp = Image.open(os.getcwd() + path)
+        temp.load()
         self.size = temp.size
         self.mode = temp.mode
+        self.im = temp.im
+        self.info = temp.info.copy()
         return temp
+
+    def monochrome(self, better_img:bool = False)->Image:
+        ''' Return the image in grey variations, turn better_img on to have coef '''
+        img2= Image.new(mode = 'L', size=(self.width, self.height))
+        for i in range(self.width):
+            for j in range(self.height):
+                if better_img:
+                    sum_pixel = 0.2126*self.getpixel((i,j))[0]+0.7152*self.getpixel((i,j))[1]+0.0722*self.getpixel((i,j))[2]
+                else:
+                    sum_pixel = self.getpixel((i,j))[0] + self.getpixel((i,j))[1] + self.getpixel((i,j))[2]
+                sum_pixel //= 3
+                sum_pixel = int(sum_pixel)
+                img2.putpixel((i, j), sum_pixel)
+        return img2
 
     def show(self, title:str|None = None):
         ''' Show the Image '''
