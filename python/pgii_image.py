@@ -34,7 +34,7 @@ class PgiiImage(Image.Image):
         self._mode = element
 
     def __create_image(self, mode:str, size:tuple)->Image:
-        ''' Create the Image '''
+        ''' Create a black Image of size parameters '''
         temp = Image.new(mode, size)
         temp.load()
         self.size = temp.size
@@ -44,6 +44,7 @@ class PgiiImage(Image.Image):
         return temp
 
     def __open_image(self, path:str)->Image:
+        ''' Open an Image from a path '''
         temp = Image.open(os.getcwd() + path)
         temp.load()
         self.size = temp.size
@@ -81,6 +82,3 @@ class PgiiImage(Image.Image):
     def show(self, title:str|None = None):
         ''' Show the Image '''
         self.img.show(title)
-
-a = PgiiImage("\\pgii_utilities\\python\\toon.png")
-
