@@ -9,7 +9,6 @@ class PgiiImage(Image.Image):
         self._size = size
         self._mode = mode
         self._path = path
-        
         if path is None :
             self.img = self.__create_image(mode, size)
         else:
@@ -67,9 +66,21 @@ class PgiiImage(Image.Image):
                 img2.putpixel((i, j), sum_pixel)
         return img2
 
+    def binarisation(self, seuil:int = 127, better_image:bool = False)->Image:
+        ''' Return an image black and white whithin all pixels are replaced by black if < seuil, else return white '''
+        img2= Image.new(mode = '1', size=(self.width, self.height))
+        if self.mode =='RGB':
+            self = self.monochrome(better_image)
+        if self.mode == 'L':
+            for i in range(self.width):
+                for j in range(self.height):
+                    pixel = (((self.getpixel((i,j)))//seuil)*255)
+                    img2.putpixel((i,j), pixel )
+            return img2
+
     def show(self, title:str|None = None):
         ''' Show the Image '''
         self.img.show(title)
 
 a = PgiiImage("\\pgii_utilities\\python\\toon.png")
-print(a.size, a.mode, a.width, a.height)
+
