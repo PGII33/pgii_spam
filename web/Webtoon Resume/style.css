@@ -1,14 +1,16 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
-    
+    color: var(--toggle-text-color);
+    font-family: 'Rubik+Doodle+Shadow';
 }
 
 :root {
-    --bg-color: #038b69;
-    --toggle-text-color: #034825;
+    --bg-color: #4CAF50;
+    --toggle-text-color: #333333;
 }
 
 .header a {
@@ -31,4 +33,8 @@
 /* Style du texte caché */
 .hidden-text {
     display: none;
+}
+
+p strong {
+    font-weight: bold;
 }
