@@ -3,15 +3,32 @@
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
+    
 }
 
 :root {
     --bg-color: #038b69;
+    --toggle-text-color: #034825;
 }
 
 .header a {
     background-color: var(--bg-color);
     color: white;
-    padding: 2.5%;
+    padding: 1% 1%;
+    margin: 1% 2%;
     text-decoration: none;
+    font-size: 1.5em;
+}
+
+.toggle-text {
+    padding: 2%;
+    margin: 1% 0%;
+    background-color: var(--toggle-text-color);
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Style du texte caché */
+.hidden-text {
+    display: none;
 }
