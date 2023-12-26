@@ -23,6 +23,22 @@ function genererResume(texteBrut) {
     return resume;
 }
 
+// Cette fonction permet le filtrage par genre
+function filtrerParGenre() {
+    const genreSelectionne = document.getElementById('genreFilter').value;
+    const elementsWebtoon = document.getElementsByClassName('toggle-text');
+
+    console.log('Genre sélectionné :', genreSelectionne);
+
+    for (const element of elementsWebtoon) {
+        if (genreSelectionne === 'tous' || element.classList.contains(genreSelectionne)) {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }console.log('Éléments affichés :', Array.from(elementsWebtoon).filter(el => el.style.display === 'block').map(el => el.id));
+}
+
 // Déclaration des variables
 let texteBrut = ""; // Le texte brut à convertir
 let resumeWebtoon = ""; // La version html de ce texte
