@@ -1,3 +1,5 @@
+
+// Cette fonction permet de cacher le texte ou de le faire apparaitre
 function toggleVisibility(id) {
     var hiddenText = document.getElementById(id);
 
