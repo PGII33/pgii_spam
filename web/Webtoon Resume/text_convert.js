@@ -2,7 +2,7 @@
 // Cette fonction permet de séparer du texte brut en catégories et en texte
 function genererResume(texteBrut) {
     const lignes = texteBrut.split('\n');
-    let resume = '';
+    let resume = '<p>';
 
     for (const ligne of lignes) {
         // Détecter la catégorie et le texte associé
@@ -19,6 +19,8 @@ function genererResume(texteBrut) {
             resume += `<strong>${categorie} </strong>: ${texte}<br><br>`;
         }
     }
+    
+    resume += '</p>';
 
     return resume;
 }
@@ -28,15 +30,13 @@ function filtrerParGenre() {
     const genreSelectionne = document.getElementById('genreFilter').value;
     const elementsWebtoon = document.getElementsByClassName('toggle-text');
 
-    console.log('Genre sélectionné :', genreSelectionne);
-
     for (const element of elementsWebtoon) {
         if (genreSelectionne === 'tous' || element.classList.contains(genreSelectionne)) {
             element.style.display = 'block';
         } else {
             element.style.display = 'none';
         }
-    }console.log('Éléments affichés :', Array.from(elementsWebtoon).filter(el => el.style.display === 'block').map(el => el.id));
+    }
 }
 
 // Déclaration des variables
@@ -56,7 +56,7 @@ Lien : https://www.webtoons.com/fr/action/the-world-after-the-fall/list?title_no
 Dernière date d'édition : 9/11/23
 `;
 resumeWebtoon = genererResume(texteBrut);
-document.getElementById('The-World-After-The-Fall').innerHTML = resumeWebtoon;
+document.getElementById('The_World_After_the_Fall').innerHTML = resumeWebtoon;
 
 // Villian To Kill
 texteBrut = `
@@ -71,7 +71,7 @@ Lien : https://www.webtoons.com/fr/action/villaintokill/list?title_no=3443
 Dernière date d'édition : 14/11/23
 `;
 resumeWebtoon = genererResume(texteBrut);
-document.getElementById('Villain-To-Kill').innerHTML = resumeWebtoon;
+document.getElementById('Villain_To_Kill').innerHTML = resumeWebtoon;
 
 // Verification du fonctionnement
 console.log(resumeWebtoon)
