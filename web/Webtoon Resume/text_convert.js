@@ -165,6 +165,3 @@ Dernière date d'édition : 14/11/23
 `;
 resumeWebtoon = genererResume(texteBrut);
 document.getElementById('Villain_To_Kill').innerHTML = resumeWebtoon;
-
-// Verification du fonctionnement
-console.log(resumeWebtoon)
